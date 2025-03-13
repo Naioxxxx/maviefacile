@@ -38,33 +38,103 @@ document.addEventListener('DOMContentLoaded', function () {
         registerForm.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            const email = document.getElementById('email').value;
-            const newUsername = document.getElementById('new-username').value;
+            // Récupération des valeurs
+            const email = document.getElementById('email').value.trim();
+            const newUsername = document.getElementById('new-username').value.trim();
             const newPassword = document.getElementById('new-password').value;
-            const profilePicture = document.getElementById('profile-picture').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const profilePicture = document.getElementById('profile-picture').value.trim();
 
-            // URL de la photo de profil par défaut
+            // Réinitialisation des erreurs
+            clearErrors();
+
+            // Validation des champs
+            if (!validateForm(email, newUsername, newPassword, confirmPassword, profilePicture)) {
+                return;
+            }
+
+            // Création de l'utilisateur
             const defaultProfilePicture = "https://us.123rf.com/450wm/kritchanut/kritchanut1405/kritchanut140500356/28235038-man-ic%C3%B4ne-silhouette-avec-le-signe-de-point-d-interrogation-notion-anonyme-et-suspect.jpg?ver=6";
-
-            // Utilise l'URL fournie ou l'image par défaut
             const finalProfilePicture = profilePicture || defaultProfilePicture;
 
-            // Récupère les utilisateurs depuis le localStorage
             const users = JSON.parse(localStorage.getItem('users')) || [];
 
-            // Vérifie si l'utilisateur ou l'e-mail existe déjà
-            const userExists = users.some(u => u.username === newUsername || u.email === email);
-
-            if (userExists) {
-                alert('Ce nom d\'utilisateur ou cette adresse e-mail est déjà utilisé.');
-            } else {
-                // Ajoute le nouvel utilisateur avec sa photo de profil
-                users.push({ email, username: newUsername, password: newPassword, profilePicture: finalProfilePicture });
-                localStorage.setItem('users', JSON.stringify(users));
-
-                alert('Inscription réussie ! Redirection vers la page de connexion...');
-                window.location.href = 'index.html'; // Redirige vers la page de connexion
+            if (users.some(u => u.username === newUsername)) {
+                showError('username-error', 'Ce nom d\'utilisateur est déjà pris');
+                return;
             }
+
+            if (users.some(u => u.email === email)) {
+                showError('email-error', 'Cet email est déjà utilisé');
+                return;
+            }
+
+            // Enregistrement
+            users.push({
+                email,
+                username: newUsername,
+                password: newPassword, // À hasher en production!
+                profilePicture: finalProfilePicture,
+                description: '',
+                joined: new Date().toISOString()
+            });
+
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Inscription réussie !');
+            window.location.href = 'index.html';
+        });
+    }
+
+    // Fonctions de validation
+    function validateForm(email, username, password, confirmPassword, profilePicture) {
+        let isValid = true;
+
+        // Validation email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            showError('email-error', 'Format d\'email invalide');
+            isValid = false;
+        }
+
+        // Validation username
+        if (username.length < 3) {
+            showError('username-error', 'Minimum 3 caractères');
+            isValid = false;
+        }
+
+        // Validation password
+        if (password.length < 8) {
+            showError('password-error', 'Minimum 8 caractères');
+            isValid = false;
+        } else if (password !== confirmPassword) {
+            showError('confirm-error', 'Les mots de passe ne correspondent pas');
+            isValid = false;
+        }
+
+        // Validation image
+        if (profilePicture) {
+            const pathPart = profilePicture.split(/[?#]/)[0];
+            const allowedExtensions = /\.(png|jpe?g|webp)$/i;
+            if (!allowedExtensions.test(pathPart)) {
+                showError('image-error', 'Format .png, .jpg ou .webp requis');
+                isValid = false;
+            }
+        }
+
+        return isValid;
+    }
+
+    function showError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+        setTimeout(() => errorElement.style.display = 'none', 5000);
+    }
+
+    function clearErrors() {
+        document.querySelectorAll('.error-message').forEach(el => {
+            el.textContent = '';
+            el.style.display = 'none';
         });
     }
 

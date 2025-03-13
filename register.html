@@ -6,38 +6,75 @@
     <title>Inscription</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="display: flex; flex-direction: column; min-height: 100vh;">
-    <header style="padding: 6rem 0 2rem 0; text-align: center; background: #09090A;">
-        <h1 style="color: white; margin: 0; font-size: 2.5rem;">Inscription</h1>
+<body>
+    <header class="settings-header">
+
+            <div class="menu-container">
+                <!-- Menu Hamburger cohérent avec les autres pages -->
+                <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu principal">
+                    <span class="bar bar-top"></span>
+                    <span class="bar bar-middle"></span>
+                    <span class="bar bar-bottom"></span>
+                </button>
+                </button>
+
+                <!-- Menu Déroulant -->
+                <nav class="dropdown-menu" id="dropdown-menu" aria-label="Sous-menu">
+                    <ul class="menu-list">
+                        <li>
+                            <a href="index.html" class="menu-link">
+                                <svg class="settings-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/>
+                                </svg>
+                                Paramètres
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </header>
 
-    <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem;">
-        <section id="register-section" style="width: 100%; max-width: 400px;">
-            <h2 style="text-align: center; margin-bottom: 2rem;">Créez votre compte</h2>
-            <form id="register-form" style="display: grid; gap: 1.5rem;">
-                <div>
-                    <label for="email">Adresse e-mail:</label>
-                    <input type="email" id="email" name="email" required style="width: 100%; padding: 0.8rem;">
+    <main class="form-container">
+        <section class="auth-form">
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="email">Adresse email</label>
+                    <input type="email" id="email" required>
+                    <div id="email-error" class="form-error"></div>
                 </div>
 
-                <div>
-                    <label for="new-username">Nom d'utilisateur:</label>
-                    <input type="text" id="new-username" name="new-username" required style="width: 100%; padding: 0.8rem;">
+                <div class="form-group">
+                    <label for="new-username">Nom d'utilisateur</label>
+                    <input type="text" id="new-username" minlength="3" required>
+                    <div id="username-error" class="form-error"></div>
                 </div>
 
-                <div>
-                    <label for="new-password">Mot de passe:</label>
-                    <input type="password" id="new-password" name="new-password" required style="width: 100%; padding: 0.8rem;">
+                <div class="form-group">
+                    <label for="new-password">Mot de passe</label>
+                    <input type="password" id="new-password" minlength="8" required>
+                    <div id="password-error" class="form-error"></div>
                 </div>
 
-                <div>
-                    <label for="profile-picture">Photo de profil (URL):</label>
-                    <input type="url" id="profile-picture" name="profile-picture" style="width: 100%; padding: 0.8rem;">
+                <div class="form-group">
+                    <label for="confirm-password">Confirmer le mot de passe</label>
+                    <input type="password" id="confirm-password" required>
+                    <div id="confirm-error" class="form-error"></div>
                 </div>
 
-                <button type="submit" style="padding: 1rem; background: #00ED64; color: white; border: none; border-radius: 4px;">S'inscrire</button>
+                <div class="form-group">
+                    <label for="profile-picture" class="optional-field">
+                        Photo de profil (URL - Optionnel)
+                    </label>
+                    <input type="url" 
+                           id="profile-picture" 
+                           placeholder="https://exemple.com/image.jpg">
+                    <div id="image-error" class="form-error"></div>
+                </div>
+
+                <button type="submit" class="form-button">S'inscrire</button>
             </form>
-            <p style="text-align: center; margin-top: 1.5rem;">Déjà inscrit ? <a href="index.html">Se connecter</a></p>
         </section>
     </main>
 
