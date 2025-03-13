@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+    <header style="padding: 6rem 0 2rem 0; text-align: center; background: #09090A;">
+        <h1 style="color: white; margin: 0; font-size: 2.5rem;">Inscription</h1>
+    </header>
+
+    <main style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+        <section id="register-section" style="width: 100%; max-width: 400px;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Créez votre compte</h2>
+            <form id="register-form" style="display: grid; gap: 1.5rem;">
+                <div>
+                    <label for="email">Adresse e-mail:</label>
+                    <input type="email" id="email" name="email" required style="width: 100%; padding: 0.8rem;">
+                </div>
+
+                <div>
+                    <label for="new-username">Nom d'utilisateur:</label>
+                    <input type="text" id="new-username" name="new-username" required style="width: 100%; padding: 0.8rem;">
+                </div>
+
+                <div>
+                    <label for="new-password">Mot de passe:</label>
+                    <input type="password" id="new-password" name="new-password" required style="width: 100%; padding: 0.8rem;">
+                </div>
+
+                <div>
+                    <label for="profile-picture">Photo de profil (URL):</label>
+                    <input type="url" id="profile-picture" name="profile-picture" style="width: 100%; padding: 0.8rem;">
+                </div>
+
+                <button type="submit" style="padding: 1rem; background: #00ED64; color: white; border: none; border-radius: 4px;">S'inscrire</button>
+            </form>
+            <p style="text-align: center; margin-top: 1.5rem;">Déjà inscrit ? <a href="index.html">Se connecter</a></p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

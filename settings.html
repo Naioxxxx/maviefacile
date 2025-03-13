@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="settings-header">
+        <div class="header-content">
+            <h1>Paramètres</h1>
+            <div class="menu-container">
+                <!-- Hamburger Icon -->
+                <button class="hamburger-menu" id="hamburger-menu" aria-label="Menu principal">
+                    <span class="bar bar-top"></span>
+                    <span class="bar bar-middle"></span>
+                    <span class="bar bar-bottom"></span>
+                </button>
+
+                <!-- Dropdown Menu -->
+                <nav class="dropdown-menu" id="dropdown-menu" aria-label="Sous-menu">
+                    <ul class="menu-list">
+                        <li>
+                            <a href="home.html" class="menu-link">
+                                <svg class="home-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    <path d="M9 22V12h6v10"/>
+                                </svg>
+                                Retour à l'accueil
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="settings-section">
+            <h2>Modifier vos paramètres</h2>
+
+            <!-- Bouton pour modifier la photo de profil -->
+            <div class="setting-option">
+                <h3>Photo de profil</h3>
+                <p>Cliquez sur le bouton ci-dessous pour modifier votre photo de profil.</p>
+                <a href="edit-profile.html" class="settings-button">Modifier la photo de profil</a>
+            </div>
+
+            <!-- Bouton pour modifier le mot de passe -->
+            <div class="setting-option">
+                <h3>Mot de passe</h3>
+                <p>Cliquez sur le bouton ci-dessous pour modifier votre mot de passe.</p>
+                <a href="reset-password.html" class="settings-button">Modifier le mot de passe</a>
+            </div>
+
+                        <!-- Ajouter après la section mot de passe -->
+            <div class="setting-option">
+                <h3>Description personnelle</h3>
+                <p>Écrivez une brève description de vous-même (max 200 caractères).</p>
+                <form id="description-form">
+                    <textarea 
+                        id="user-description" 
+                        maxlength="200" 
+                        placeholder="Décrivez-vous en quelques mots..."
+                    ></textarea>
+                    <button type="submit" class="settings-button">Sauvegarder</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

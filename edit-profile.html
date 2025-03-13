@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier la photo de profil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="home.html" class="home-button">Accueil</a>
+            <h1>Modifier la photo de profil</h1>
+            <div class="user-info">
+                <span>Connecté en tant que : <span id="logged-in-username"></span></span>
+            </div>
+            <!-- Masquer le menu hamburger sur cette page -->
+            <div class="menu-container hidden">
+                <div class="hamburger-menu" id="hamburger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="settings.html" id="settings-link">Paramètres</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="edit-profile-section">
+            <h2>Mettez à jour votre photo de profil</h2>
+            <form id="edit-profile-form">
+                <label for="new-profile-picture">Nouvelle photo de profil (URL):</label>
+                <input type="url" id="new-profile-picture" name="new-profile-picture" required>
+                <button type="submit" class="settings-button">Mettre à jour</button>
+            </form>
+            <div id="edit-profile-message" class="hidden"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
